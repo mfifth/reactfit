@@ -9,7 +9,7 @@ export const Friends = props => {
           {props.friendList.map((friend, i) => {
             return (
               <li key={i} className="list-group-item">
-                <span className="badge">{friend.average.steps}</span>
+                <span className="badge">{friend.user.averageDailySteps}</span>
                 <img
                   src={friend.user.avatar}
                   style={{ height: 50, left: 10, borderRadius: "50%" }}
