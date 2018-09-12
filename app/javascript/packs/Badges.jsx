@@ -5,7 +5,7 @@ export const Badges = props => {
   return (
     <div className="panel panel-default">
       <div className="panel-heading">
-        <h4>Badges</h4>
+        <h4>Badges: </h4>
       </div>
       <div className="panel-body">
         {props.myBadges.map((badge, i) => {

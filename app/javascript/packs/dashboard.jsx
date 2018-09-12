@@ -90,11 +90,12 @@ class Dashboard extends React.Component {
         </header>
 
         {!this.state.loggedIn && (
-          <div className="row text-center">
+          <div style={{ "text-align": "center" }}>
             <a
+              className="fitbit-btn"
               href={`https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=${CLIENT_ID}&redirect_uri=http://localhost:3000&scope=activity%20nutrition%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight&expires_in=604800`}
             >
-              Log in with fitbit
+              Fitbit Login
             </a>
           </div>
         )}
