@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import Axios from "axios";
 import { LifetimeStats } from "./LifetimeStats";
 import { Badges } from "./Badges";
+import { Charts } from "./Charts";
+import { Friends } from "./Friends";
 import dummyData from "./DummyData";
 import "bootstrap/dist/css/bootstrap.css";
 
@@ -51,9 +53,27 @@ class Dashboard extends React.Component {
       );
 
       this.getFitbitData(
+        "https://api.fitbit.com/1/user/-/activities/date/today.json",
+        fitbitToken,
+        "today"
+      );
+
+      this.getFitbitData(
         "https://api.fitbit.com/1/user/-/badges.json",
         fitbitToken,
         "badges"
+      );
+
+      this.getFitbitData(
+        "https://api.fitbit.com/1/user/-/activities/steps/date/today/1m.json",
+        fitbitToken,
+        "charts"
+      );
+
+      this.getFitbitData(
+        "https://api.fitbit.com/1/user/-/friends.json",
+        fitbitToken,
+        "friends"
       );
     }
   }
@@ -81,13 +101,19 @@ class Dashboard extends React.Component {
 
         <div className="row">
           <div className="col-lg-3">
-            <LifetimeStats myStats={this.state.lifetimeStats.lifetime} />
+            <LifetimeStats
+              myStats={this.state.lifetimeStats.lifetime.total}
+              todaysStats={this.state.today.summary}
+            />
             <Badges myBadges={this.state.badges.badges} />
           </div>
 
           <div className="col-lg-6">
             <div className="panel-default">
               <div className="panel-heading">Steps</div>
+              <div className="panel-body">
+                <Charts stepData={this.state.charts} />
+              </div>
             </div>
             <div className="panel-default">
               <div className="panel-heading">Distance (miles)</div>
@@ -96,7 +122,12 @@ class Dashboard extends React.Component {
 
           <div className="col-lg-2 col-lg-offset-1">
             <div className="panel panel-default">
-              <div className="panel-heading">Your Friends</div>
+              <div className="panel-heading">
+                <h4>Friends</h4>
+              </div>
+              <div className="panel-body">
+                <Friends friendList={this.state.friends.friends} />
+              </div>
             </div>
           </div>
         </div>

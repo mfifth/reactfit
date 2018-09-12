@@ -5,28 +5,30 @@ export const LifetimeStats = props => {
   return (
     <div className="panel panel-default">
       <div className="panel-heading">
-        <h4>Overall Status:</h4>
+        <h3>Lifetime Stats:</h3>
       </div>
       <div className="panel-body">
-        <h4>Lifetime - </h4>
-        <p>Distance: {props.myStats.total.distance}</p>
-        <p>Steps: {props.myStats.total.steps}</p>
-        <h4>Tracker - </h4>
-        <p />
-        <p />
-      </div>
-      <div className="panel panel-default">
-        <div className="panel-heading">Badges</div>
+        <h4>Overall - </h4>
+        <p>Distance: {props.myStats.distance}</p>
+        <p>Steps: {props.myStats.steps}</p>
+        <br />
+        <h4>Today - </h4>
+        <p>Steps: {props.todaysStats.steps} </p>
+        <p>Calories: {props.todaysStats.caloriesOut} </p>
       </div>
     </div>
   );
 };
 
 LifetimeStats.defaultProps = {
-  lifetime: {
+  myStats: {
     total: {
       distance: 21,
       steps: 21
+    },
+    today: {
+      caloriesOut: 4,
+      steps: 9
     }
   }
 };

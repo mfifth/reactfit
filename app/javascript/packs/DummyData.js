@@ -2,16 +2,13 @@ const dummyData = {
   currentUser: { user: "" },
   loggedIn: false,
   lifetimeStats: {
-    best: {
-      total: {
-        distance: { date: "", value: "" },
-        steps: { date: "", value: "" }
-      }
-    },
-    lifetime: { total: { distance: "", steps: "" } }
+    lifetime: {
+      total: { steps: "", distance: "" }
+    }
   },
+  today: { summary: { steps: "", caloriesOut: "" } },
   badges: { badges: [] },
-  steps: { "activities-steps": [] },
+  charts: { "activities-steps": [] },
   distance: { "activities-distance": [] },
   friends: { friends: [] }
 };
