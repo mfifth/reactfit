@@ -9,6 +9,8 @@ import dummyData from "./DummyData";
 import "bootstrap/dist/css/bootstrap.css";
 
 const CLIENT_ID = "22D72X";
+const CATEGORIES = ["steps", "run", "bike", "swim"];
+
 class Dashboard extends React.Component {
   state = dummyData;
 
@@ -28,8 +30,14 @@ class Dashboard extends React.Component {
         console.log(error);
       });
 
-    console.log(this);
+    console.log(this.state);
   }
+
+  logoutUser = () => {
+    if (confirm("Are you sure you want to logout?")) {
+      window.location.href = "/";
+    }
+  };
 
   componentDidMount() {
     if (window.location.hash) {
@@ -89,16 +97,20 @@ class Dashboard extends React.Component {
           <p className="lead">Your personal fitness dashboard</p>
         </header>
 
-        {!this.state.loggedIn && (
-          <div style={{ "text-align": "center" }}>
+        <div style={{ "text-align": "center" }}>
+          {this.state.loggedIn ? (
+            <button className="fitbit-btn logout" onClick={this.logoutUser}>
+              Fitbit Logout
+            </button>
+          ) : (
             <a
               className="fitbit-btn"
               href={`https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=${CLIENT_ID}&redirect_uri=http://localhost:3000&scope=activity%20nutrition%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight&expires_in=604800`}
             >
               Fitbit Login
             </a>
-          </div>
-        )}
+          )}
+        </div>
 
         <div className="row">
           <div className="col-lg-3">
